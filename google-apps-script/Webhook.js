@@ -72,9 +72,9 @@ function doPost(e) {
       }
     }
 
-    // Si es ALTA o si no se encontró fila previa en actualización, buscar la primera fila libre real
+    // Si es ALTA o si no se encontró fila previa en actualización, calcular la siguiente fila libre
     if (filaDestino <= 0) {
-      filaDestino = obtenerPrimeraFilaLibre(sheet);
+      filaDestino = obtenerSiguienteFilaLibre(sheet);
     }
 
     // Escribir los datos en las columnas A hasta AV respetando el mapeo oficial
@@ -125,30 +125,36 @@ function buscarFilaProductor(sheet, dni, nroRegistro) {
 }
 
 /**
- * Encuentra la primera fila realmente vacía para insertar un nuevo productor.
- * No se basa solo en getLastRow() porque el Excel original suele tener miles de filas
- * con formato o espacios en blanco residuales.
+ * Encuentra la siguiente fila libre al final del bloque principal de productores.
+ * Evita huecos aislados accidentales en el medio (como filas borradas) y evita
+ * saltar al final de las 10.000 filas con formato residual.
  */
-function obtenerPrimeraFilaLibre(sheet) {
+function obtenerSiguienteFilaLibre(sheet) {
   var lastRow = sheet.getLastRow();
   if (lastRow < FILA_INICIO_DATOS) return FILA_INICIO_DATOS;
 
   var numRows = lastRow - FILA_INICIO_DATOS + 1;
-  // Leemos columnas B (Apellido y Nombre) y C (DNI)
-  var data = sheet.getRange(FILA_INICIO_DATOS, 2, numRows, 2).getValues();
+  // Leemos la Columna B (Apellido y Nombre)
+  var data = sheet.getRange(FILA_INICIO_DATOS, 2, numRows, 1).getValues();
+
+  var ultimaFilaConDatos = FILA_INICIO_DATOS - 1;
+  var vaciasConsecutivas = 0;
 
   for (var i = 0; i < data.length; i++) {
     var nombre = data[i][0] ? String(data[i][0]).trim() : '';
-    var dni = data[i][1] ? String(data[i][1]).trim() : '';
-
-    // Si tanto el nombre como el DNI están vacíos, es una fila vacía disponible!
-    if (nombre === '' && dni === '') {
-      return FILA_INICIO_DATOS + i;
+    if (nombre !== '') {
+      ultimaFilaConDatos = FILA_INICIO_DATOS + i;
+      vaciasConsecutivas = 0;
+    } else {
+      vaciasConsecutivas++;
+      // Si hay más de 5 filas vacías seguidas, terminó el bloque real de productores
+      if (vaciasConsecutivas >= 5 && ultimaFilaConDatos >= FILA_INICIO_DATOS) {
+        break;
+      }
     }
   }
 
-  // Si todas las filas tenían datos, usar la siguiente al final
-  return lastRow + 1;
+  return ultimaFilaConDatos + 1;
 }
 
 /**
