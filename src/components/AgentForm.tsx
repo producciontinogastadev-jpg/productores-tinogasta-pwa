@@ -450,29 +450,29 @@ export const AgentForm: React.FC<Props> = ({
 
             <div className="sm:col-span-2">
               <label className="block font-semibold text-slate-700 mb-1.5">Género</label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="genero"
-                    value="MASC"
-                    checked={genero === 'MASC'}
-                    onChange={() => setGenero('MASC')}
-                    className="text-vinotinto-700 focus:ring-vinotinto-600"
-                  />
-                  <span>Masculino (Col K)</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="genero"
-                    value="FEM"
-                    checked={genero === 'FEM'}
-                    onChange={() => setGenero('FEM')}
-                    className="text-vinotinto-700 focus:ring-vinotinto-600"
-                  />
-                  <span>Femenino (Col J)</span>
-                </label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setGenero('MASC')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                    genero === 'MASC'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>👨 Masculino (Col K)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGenero('FEM')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                    genero === 'FEM'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>👩 Femenino (Col J)</span>
+                </button>
               </div>
             </div>
           </div>
@@ -547,27 +547,29 @@ export const AgentForm: React.FC<Props> = ({
               <label className="block font-semibold text-slate-700 mb-1.5">
                 ¿Reside en la Propiedad? (Cols Q/R)
               </label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="reside"
-                    value="SI"
-                    checked={resideEnPropiedad === 'SI'}
-                    onChange={() => setResideEnPropiedad('SI')}
-                  />
-                  <span>Sí</span>
-                </label>
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="reside"
-                    value="NO"
-                    checked={resideEnPropiedad === 'NO'}
-                    onChange={() => setResideEnPropiedad('NO')}
-                  />
-                  <span>No</span>
-                </label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setResideEnPropiedad('SI')}
+                  className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    resideEnPropiedad === 'SI'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🏡 Sí, reside</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setResideEnPropiedad('NO')}
+                  className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    resideEnPropiedad === 'NO'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🚗 No reside</span>
+                </button>
               </div>
             </div>
 
@@ -575,21 +577,27 @@ export const AgentForm: React.FC<Props> = ({
               <label className="block font-semibold text-slate-700 mb-1.5">
                 Situación de Tenencia (Cols S a V)
               </label>
-              <select
-                value={situacionTenencia}
-                onChange={(e) =>
-                  setSituacionTenencia(
-                    e.target.value as 'TITULO' | 'PREST' | 'ALQ' | 'SUCES' | ''
-                  )
-                }
-                className="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-vinotinto-600 text-sm bg-white"
-              >
-                <option value="TITULO">Con Título de Propiedad (S)</option>
-                <option value="PREST">Préstamo / Comodato (T)</option>
-                <option value="ALQ">Alquiler (U)</option>
-                <option value="SUCES">En Sucesión (V)</option>
-                <option value="">Sin especificar</option>
-              </select>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: 'TITULO', label: '📜 Título (S)' },
+                  { id: 'PREST', label: '🤝 Préstamo (T)' },
+                  { id: 'ALQ', label: '📝 Alquiler (U)' },
+                  { id: 'SUCES', label: '⚖️ Sucesión (V)' },
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setSituacionTenencia(t.id as any)}
+                    className={`py-2 px-2.5 rounded-xl border text-xs font-bold text-center transition-all ${
+                      situacionTenencia === t.id
+                        ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -673,27 +681,29 @@ export const AgentForm: React.FC<Props> = ({
               <label className="block font-semibold text-slate-700 mb-1.5">
                 Destino de la Uva (Cols AI/AJ)
               </label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="destino"
-                    value="VENTA"
-                    checked={destino === 'VENTA'}
-                    onChange={() => setDestino('VENTA')}
-                  />
-                  <span>Venta / Bodega (AI)</span>
-                </label>
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="destino"
-                    value="AUTOCONS"
-                    checked={destino === 'AUTOCONS'}
-                    onChange={() => setDestino('AUTOCONS')}
-                  />
-                  <span>Autoconsumo (AJ)</span>
-                </label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setDestino('VENTA')}
+                  className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    destino === 'VENTA'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🍇 Venta / Bodega (AI)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDestino('AUTOCONS')}
+                  className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    destino === 'AUTOCONS'
+                      ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🍷 Autoconsumo (AJ)</span>
+                </button>
               </div>
             </div>
 
@@ -701,56 +711,52 @@ export const AgentForm: React.FC<Props> = ({
               <label className="block font-semibold text-slate-700 mb-1.5">
                 Sistema de Riego (Cols AK a AN)
               </label>
-              <select
-                value={riego}
-                onChange={(e) =>
-                  setRiego(e.target.value as 'MANTO' | 'GOTEO' | 'ASPERSION' | 'COMPLEM' | '')
-                }
-                className="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-vinotinto-600 text-sm bg-white"
-              >
-                <option value="MANTO">Riego por Manto / Inundación (AK)</option>
-                <option value="GOTEO">Riego por Goteo (AL)</option>
-                <option value="ASPERSION">Riego por Aspersión (AM)</option>
-                <option value="COMPLEM">Riego Complementario / Pozo (AN)</option>
-                <option value="">Sin especificar</option>
-              </select>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: 'MANTO', label: '🌊 Manto (AK)' },
+                  { id: 'GOTEO', label: '💧 Goteo (AL)' },
+                  { id: 'ASPERSION', label: '🚿 Aspersión (AM)' },
+                  { id: 'COMPLEM', label: '🔄 Pozo/Compl. (AN)' },
+                ].map((r) => (
+                  <button
+                    key={r.id}
+                    type="button"
+                    onClick={() => setRiego(r.id as any)}
+                    className={`py-2 px-2 rounded-xl border text-xs font-bold text-center transition-all ${
+                      riego === r.id
+                        ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div>
+            <div className="sm:col-span-2">
               <label className="block font-semibold text-slate-700 mb-1.5">
                 Maquinaria de Trabajo (Cols AO/AP)
               </label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="maquinaria"
-                    value="PROPIA"
-                    checked={maquinaria === 'PROPIA'}
-                    onChange={() => setMaquinaria('PROPIA')}
-                  />
-                  <span>Propia (AO)</span>
-                </label>
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="maquinaria"
-                    value="ALQUILADA"
-                    checked={maquinaria === 'ALQUILADA'}
-                    onChange={() => setMaquinaria('ALQUILADA')}
-                  />
-                  <span>Alquilada (AP)</span>
-                </label>
-                <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="maquinaria"
-                    value="NINGUNA"
-                    checked={maquinaria === 'NINGUNA'}
-                    onChange={() => setMaquinaria('NINGUNA')}
-                  />
-                  <span>Ninguna</span>
-                </label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: 'PROPIA', label: '🚜 Propia (AO)' },
+                  { id: 'ALQUILADA', label: '🤝 Alquilada (AP)' },
+                  { id: 'NINGUNA', label: '❌ Ninguna' },
+                ].map((m) => (
+                  <button
+                    key={m.id}
+                    type="button"
+                    onClick={() => setMaquinaria(m.id as any)}
+                    className={`py-2 px-2 rounded-xl border text-xs font-bold text-center transition-all ${
+                      maquinaria === m.id
+                        ? 'bg-vinotinto-800 text-white border-vinotinto-900 shadow-xs'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {m.label}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -771,100 +777,87 @@ export const AgentForm: React.FC<Props> = ({
             <label className="block font-semibold text-slate-700">
               Fenómenos climáticos que afectaron la plantación:
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <label className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={factoresClimaticos.heladasTardias}
-                  onChange={(e) =>
-                    setFactoresClimaticos({
-                      ...factoresClimaticos,
-                      heladasTardias: e.target.checked,
-                    })
-                  }
-                  className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
-                />
-                <span>Heladas Tardías (AQ)</span>
-              </label>
-
-              <label className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={factoresClimaticos.granizo}
-                  onChange={(e) =>
-                    setFactoresClimaticos({
-                      ...factoresClimaticos,
-                      granizo: e.target.checked,
-                    })
-                  }
-                  className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
-                />
-                <span>Granizo (AS)</span>
-              </label>
-
-              <label className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={factoresClimaticos.zonda}
-                  onChange={(e) =>
-                    setFactoresClimaticos({
-                      ...factoresClimaticos,
-                      zonda: e.target.checked,
-                    })
-                  }
-                  className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
-                />
-                <span>Viento Zonda (AT)</span>
-              </label>
-
-              <label className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={factoresClimaticos.zondaTardio}
-                  onChange={(e) =>
-                    setFactoresClimaticos({
-                      ...factoresClimaticos,
-                      zondaTardio: e.target.checked,
-                    })
-                  }
-                  className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
-                />
-                <span>Zonda Tardío (AU)</span>
-              </label>
-
-              <label className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={factoresClimaticos.lluvia}
-                  onChange={(e) =>
-                    setFactoresClimaticos({
-                      ...factoresClimaticos,
-                      lluvia: e.target.checked,
-                    })
-                  }
-                  className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
-                />
-                <span>Lluvia Excesiva (AR)</span>
-              </label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {[
+                { key: 'heladasTardias', label: '❄️ Heladas Tardías (AQ)', checked: factoresClimaticos.heladasTardias },
+                { key: 'granizo', label: '🧊 Granizo (AS)', checked: factoresClimaticos.granizo },
+                { key: 'zonda', label: '💨 Viento Zonda (AT)', checked: factoresClimaticos.zonda },
+                { key: 'zondaTardio', label: '🌪️ Zonda Tardío (AU)', checked: factoresClimaticos.zondaTardio },
+                { key: 'lluvia', label: '🌧️ Lluvia Excesiva (AR)', checked: factoresClimaticos.lluvia },
+              ].map((f) => (
+                <label
+                  key={f.key}
+                  className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer font-bold transition-all ${
+                    f.checked
+                      ? 'bg-vinotinto-50 text-vinotinto-900 border-vinotinto-300 shadow-2xs'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={f.checked}
+                    onChange={(e) =>
+                      setFactoresClimaticos({
+                        ...factoresClimaticos,
+                        [f.key]: e.target.checked,
+                      })
+                    }
+                    className="rounded text-vinotinto-700 focus:ring-vinotinto-600"
+                  />
+                  <span>{f.label}</span>
+                </label>
+              ))}
             </div>
 
             <div className="pt-2">
-              <label className="block font-semibold text-slate-700 mb-1.5">
-                Nivel de Daño Estimado (Cols AV a AX)
+              <label className="block font-bold text-slate-800 mb-2">
+                Nivel de Daño Estimado (Semáforo Oficial · Cols AV a AX)
               </label>
-              <div className="flex gap-4">
-                {(['NINGUNO', 'BAJO', 'MEDIO', 'ALTO'] as const).map((nivel) => (
-                  <label key={nivel} className="flex items-center gap-1.5 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="nivelDano"
-                      value={nivel}
-                      checked={nivelDano === nivel}
-                      onChange={() => setNivelDano(nivel)}
-                    />
-                    <span className="capitalize">{nivel.toLowerCase()}</span>
-                  </label>
-                ))}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setNivelDano('NINGUNO')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    nivelDano === 'NINGUNO'
+                      ? 'bg-emerald-600 text-white border-emerald-700 shadow-sm ring-2 ring-emerald-300'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🟢 Sin Daño</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setNivelDano('BAJO')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    nivelDano === 'BAJO'
+                      ? 'bg-amber-500 text-white border-amber-600 shadow-sm ring-2 ring-amber-300'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🟡 Daño Bajo (AV)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setNivelDano('MEDIO')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    nivelDano === 'MEDIO'
+                      ? 'bg-orange-500 text-white border-orange-600 shadow-sm ring-2 ring-orange-300'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🟠 Daño Medio (AW)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setNivelDano('ALTO')}
+                  className={`py-2.5 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    nivelDano === 'ALTO'
+                      ? 'bg-red-600 text-white border-red-700 shadow-sm ring-2 ring-red-300'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>🔴 Daño Alto (AX)</span>
+                </button>
               </div>
             </div>
           </div>

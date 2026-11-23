@@ -241,7 +241,11 @@ export const AdminReview: React.FC<Props> = ({
                       <div className="text-[11px] text-slate-400">{reg.destino || 'Destino S/D'}</div>
                     </td>
                     <td className="px-4 py-3">
-                      <SyncStatusBadge estado={reg.estado} enviadoSheets={reg.enviadoSheets} />
+                      <SyncStatusBadge
+                        estado={reg.estado}
+                        enviadoSheets={reg.enviadoSheets}
+                        filaSheets={reg.filaSheets}
+                      />
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="inline-flex items-center gap-1.5 justify-end">
@@ -317,6 +321,12 @@ export const AdminReview: React.FC<Props> = ({
                 <p className="text-xs text-slate-500 mt-0.5">
                   ID: {registroSeleccionado.id} · Creado por: {registroSeleccionado.creadoPor}
                 </p>
+                {registroSeleccionado.filaSheets && (
+                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></span>
+                    <span>Asentado en Google Sheets: Fila #{registroSeleccionado.filaSheets}</span>
+                  </div>
+                )}
               </div>
               <div className="flex items-center gap-2">
                 {!modoEdicion && registroSeleccionado.estado !== 'INACTIVO' && (
