@@ -156,6 +156,20 @@ function obtenerPrimeraFilaLibre(sheet) {
  * Si esActualizacion es true, solo sobreescribe si el campo del payload tiene valor (regla de no borrar datos)
  */
 function aplicarDatosEnFila(sheet, fila, p, esActualizacion) {
+  // Si es un ALTA nueva, clonar el formato exacto (colores, bordes, fuentes) de la fila anterior
+  if (!esActualizacion && fila > FILA_INICIO_DATOS) {
+    try {
+      var filaOrigen = fila - 1;
+      sheet.getRange(filaOrigen, 1, 1, 50).copyTo(
+        sheet.getRange(fila, 1, 1, 50),
+        SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+        false
+      );
+    } catch (e) {
+      // Si ocurre un detalle con el formato, no interrumpe la escritura de datos
+    }
+  }
+
   function poner(colIndex, valor) {
     if (valor === undefined || valor === null) return;
     if (esActualizacion && valor === '') return; // En actualización, campos vacíos conservan el dato previo
