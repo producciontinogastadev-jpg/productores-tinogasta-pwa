@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="40" fill="#6c2e3b"/>
+  <!-- Leaf -->
+  <path d="M96 40 C110 30 135 45 130 65 C120 60 105 60 96 68 Z" fill="#4ade80"/>
+  <!-- Vine stalk -->
+  <path d="M96 40 C96 55 96 65 96 70" stroke="#a3e635" stroke-width="5" stroke-linecap="round"/>
+  <!-- Grapes circles -->
+  <circle cx="96" cy="85" r="16" fill="#f43f5e"/>
+  <circle cx="78" cy="98" r="15" fill="#e11d48"/>
+  <circle cx="114" cy="98" r="15" fill="#e11d48"/>
+  <circle cx="86" cy="122" r="14" fill="#be123c"/>
+  <circle cx="106" cy="122" r="14" fill="#be123c"/>
+  <circle cx="96" cy="144" r="13" fill="#9f1239"/>
+</svg>
+
