@@ -72,9 +72,9 @@ function doPost(e) {
       }
     }
 
-    // Si es ALTA o si no se encontró fila previa en actualización, agregar al final
+    // Si es ALTA o si no se encontró fila previa en actualización, buscar la primera fila libre real
     if (filaDestino <= 0) {
-      filaDestino = Math.max(sheet.getLastRow() + 1, FILA_INICIO_DATOS);
+      filaDestino = obtenerPrimeraFilaLibre(sheet);
     }
 
     // Escribir los datos en las columnas A hasta AV respetando el mapeo oficial
@@ -122,6 +122,33 @@ function buscarFilaProductor(sheet, dni, nroRegistro) {
   }
 
   return -1;
+}
+
+/**
+ * Encuentra la primera fila realmente vacía para insertar un nuevo productor.
+ * No se basa solo en getLastRow() porque el Excel original suele tener miles de filas
+ * con formato o espacios en blanco residuales.
+ */
+function obtenerPrimeraFilaLibre(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < FILA_INICIO_DATOS) return FILA_INICIO_DATOS;
+
+  var numRows = lastRow - FILA_INICIO_DATOS + 1;
+  // Leemos columnas B (Apellido y Nombre) y C (DNI)
+  var data = sheet.getRange(FILA_INICIO_DATOS, 2, numRows, 2).getValues();
+
+  for (var i = 0; i < data.length; i++) {
+    var nombre = data[i][0] ? String(data[i][0]).trim() : '';
+    var dni = data[i][1] ? String(data[i][1]).trim() : '';
+
+    // Si tanto el nombre como el DNI están vacíos, es una fila vacía disponible!
+    if (nombre === '' && dni === '') {
+      return FILA_INICIO_DATOS + i;
+    }
+  }
+
+  // Si todas las filas tenían datos, usar la siguiente al final
+  return lastRow + 1;
 }
 
 /**
