@@ -92,44 +92,56 @@ export const AdminReview: React.FC<Props> = ({
   return (
     <div className="max-w-6xl mx-auto py-6 px-4">
       {/* Metrics Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
-            <Cloud className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="text-2xl font-black text-slate-900">{pendientesCount}</div>
-            <div className="text-xs text-slate-500 font-medium">En cola (Firebase)</div>
-          </div>
-        </div>
-
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
-            <FileSpreadsheet className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="text-2xl font-black text-slate-900">{confirmadosCount}</div>
-            <div className="text-xs text-slate-500 font-medium">En Google Sheets</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-6">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden group hover:shadow-md transition-shadow">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold ring-1 ring-blue-100">
+              <Cloud className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">{pendientesCount}</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Pendientes Revisión</div>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
-            <HardDrive className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="text-2xl font-black text-slate-900">{localesCount}</div>
-            <div className="text-xs text-slate-500 font-medium">Locales (Sin sincronizar)</div>
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden group hover:shadow-md transition-shadow">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-600"></div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold ring-1 ring-emerald-100">
+              <FileSpreadsheet className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">{confirmadosCount}</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">En Google Sheets</div>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
-            <AlertTriangle className="w-5 h-5" />
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden group hover:shadow-md transition-shadow">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-bold ring-1 ring-amber-100">
+              <HardDrive className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">{localesCount}</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">En Celular (Local)</div>
+            </div>
           </div>
-          <div>
-            <div className="text-2xl font-black text-slate-900">{inactivosCount}</div>
-            <div className="text-xs text-slate-500 font-medium">Bajas Lógicas</div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden group hover:shadow-md transition-shadow">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-400 to-slate-600"></div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold ring-1 ring-slate-200">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">{inactivosCount}</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Bajas Lógicas</div>
+            </div>
           </div>
         </div>
       </div>

@@ -344,39 +344,46 @@ export const App: React.FC = () => {
         </div>
       )}
 
-      {/* Status Badges: Firebase & Google Sheets */}
-      <div className="max-w-6xl mx-auto px-4 pt-3 pb-1 w-full flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
-        <div className="flex items-center gap-4 flex-wrap">
-          {/* Firestore status */}
-          <div className="flex items-center gap-1.5">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isFirebaseConfigured ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'
-              }`}
-            ></span>
-            <span>
-              {isFirebaseConfigured
-                ? 'Cloud Firestore: Conectado'
-                : 'Cloud Firestore: Pendiente (Modo local activo)'}
-            </span>
+      {/* Status Bar / Tech Telemetry */}
+      <div className="max-w-6xl mx-auto px-4 pt-3 pb-2 w-full">
+        <div className="bg-slate-100/80 border border-slate-200/90 rounded-2xl px-3.5 py-2 flex flex-wrap items-center justify-between gap-2.5 text-xs">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+            {/* Firestore Telemetry */}
+            <div className="flex items-center gap-2 bg-white px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-2xs">
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  isFirebaseConfigured
+                    ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)] animate-pulse'
+                    : 'bg-slate-400'
+                }`}
+              ></span>
+              <span className="font-semibold text-slate-700 text-[11px]">
+                {isFirebaseConfigured ? 'Cloud Firestore: En línea' : 'Almacenamiento Local (IndexedDB)'}
+              </span>
+            </div>
+
+            {/* Sheets Telemetry */}
+            <div className="flex items-center gap-2 bg-white px-2.5 py-1 rounded-lg border border-slate-200/80 shadow-2xs">
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  isSheetsConfigured
+                    ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)] animate-pulse'
+                    : 'bg-amber-400'
+                }`}
+              ></span>
+              <span className="font-semibold text-slate-700 text-[11px]">
+                {isSheetsConfigured
+                  ? 'Google Sheets: Conectado (Hoja REGISTRO)'
+                  : 'Google Sheets: Simulación Local'}
+              </span>
+            </div>
           </div>
 
-          {/* Sheets status */}
-          <div className="flex items-center gap-1.5">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isSheetsConfigured ? 'bg-emerald-500 animate-pulse' : 'bg-amber-400'
-              }`}
-            ></span>
-            <span>
-              {isSheetsConfigured
-                ? 'Google Sheets: Webhook Conectado (Hoja REGISTRO)'
-                : 'Google Sheets: Webhook pendiente en .env.local'}
-            </span>
+          <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-vinotinto-600"></span>
+            <span>Rubro Oficial: <strong>VID (Vitivinicultura)</strong></span>
           </div>
         </div>
-
-        <span className="font-mono text-slate-400 hidden sm:inline">Hoja: `REGISTRO`</span>
       </div>
 
       {/* Role View Routing */}
@@ -400,14 +407,24 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        <p>
-          Sistema de Digitalización y Registro de Productores · Secretaría de Producción de Tinogasta
-        </p>
-        <p className="text-[11px] text-slate-400 mt-0.5">
-          PWA Offline-First (IndexedDB + Cloud Firestore) · Piloto Propuesta 1
-        </p>
+      {/* Institutional & Academic Footer */}
+      <footer className="bg-white border-t border-slate-200/80 py-5 text-center text-xs text-slate-500 mt-10">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500">
+          <div className="text-left">
+            <p className="font-bold text-slate-800 text-xs">
+              Secretaría de Producción · Municipalidad de Tinogasta, Catamarca
+            </p>
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Proyecto de Pasantía y Seminario Final Universitario · Convocatoria 2026
+            </p>
+          </div>
+          <div className="text-right sm:text-right text-[11px] text-slate-400">
+            <span className="inline-flex items-center gap-1.5 font-medium px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              PWA Offline-First · Cloud Firestore · Google Apps Script
+            </span>
+          </div>
+        </div>
       </footer>
     </div>
   );
