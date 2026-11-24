@@ -1,0 +1,55 @@
+[debug] [2026-11-13T23:37:43.329Z] ----------------------------------------------------------------------
+[debug] [2026-11-13T23:37:43.332Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:list
+[debug] [2026-11-13T23:37:43.333Z] CLI Version:   15.24.0
+[debug] [2026-11-13T23:37:43.333Z] Platform:      win32
+[debug] [2026-11-13T23:37:43.333Z] Node Version:  v22.20.0
+[debug] [2026-11-13T23:37:43.333Z] Detected Agent: antigravity
+[debug] [2026-11-13T23:37:43.333Z] Time:          Fri Nov 13 2026 20:37:43 GMT-0300 (hora estándar de Argentina)
+[debug] [2026-11-13T23:37:43.333Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-11-13T23:37:43.346Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-11-13T23:37:43.379Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-11-13T23:37:43.379Z] > authorizing via signed-in user (sipnamsuper@gmail.com)
+[debug] [2026-11-13T23:37:43.384Z] Checked if tokens are valid: false, expires at: 1793236348214
+[debug] [2026-11-13T23:37:43.385Z] Checked if tokens are valid: false, expires at: 1793236348214
+[debug] [2026-11-13T23:37:43.385Z] > refreshing access token with scopes: []
+[debug] [2026-11-13T23:37:43.389Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-11-13T23:37:43.389Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-11-13T23:37:43.402Z] *** [apiv2] error from fetch(https://firebase-public.firebaseio.com/cli.json, {"headers":{},"method":"GET"}): Error: getaddrinfo ENOTFOUND firebase-public.firebaseio.com
+[warn] !  Unable to fetch the CLI MOTD and remote config. This is not a fatal error, but may indicate an issue with your network connection. 
+[debug] [2026-11-13T23:37:43.403Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[debug] [2026-11-13T23:37:43.403Z] *** [apiv2] error from fetch(https://www.googleapis.com/oauth2/v3/token, {"headers":{},"method":"POST","body":{"type":"Buffer","data":[45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,13,10,67,111,110,116,101,110,116,45,68,105,115,112,111,115,105,116,105,111,110,58,32,102,111,114,109,45,100,97,116,97,59,32,110,97,109,101,61,34,114,101,102,114,101,115,104,95,116,111,107,101,110,34,13,10,13,10,49,47,47,48,104,99,72,67,65,97,49,84,109,97,56,114,67,103,89,73,65,82,65,65,71,66,69,83,78,119,70,45,76,57,73,114,85,82,56,119,100,118,119,76,70,112,53,65,85,97,89,110,75,72,101,99,90,122,57,86,45,89,56,82,53,105,79,85,67,121,84,119,70,120,69,86,77,86,65,99,100,109,105,87,53,54,85,112,69,121,98,69,83,73,83,98,98,73,98,113,66,95,85,13,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,13,10,67,111,110,116,101,110,116,45,68,105,115,112,111,115,105,116,105,111,110,58,32,102,111,114,109,45,100,97,116,97,59,32,110,97,109,101,61,34,99,108,105,101,110,116,95,105,100,34,13,10,13,10,53,54,51,53,56,52,51,51,53,56,54,57,45,102,103,114,104,103,109,100,52,55,98,113,110,101,107,105,106,53,105,56,98,53,112,114,48,51,104,111,56,52,57,101,54,46,97,112,112,115,46,103,111,111,103,108,101,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,13,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,13,10,67,111,110,116,101,110,116,45,68,105,115,112,111,115,105,116,105,111,110,58,32,102,111,114,109,45,100,97,116,97,59,32,110,97,109,101,61,34,99,108,105,101,110,116,95,115,101,99,114,101,116,34,13,10,13,10,106,57,105,86,90,102,83,56,107,107,67,69,70,85,80,97,65,101,74,86,48,115,65,105,13,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,13,10,67,111,110,116,101,110,116,45,68,105,115,112,111,115,105,116,105,111,110,58,32,102,111,114,109,45,100,97,116,97,59,32,110,97,109,101,61,34,103,114,97,110,116,95,116,121,112,101,34,13,10,13,10,114,101,102,114,101,115,104,95,116,111,107,101,110,13,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,13,10,67,111,110,116,101,110,116,45,68,105,115,112,111,115,105,116,105,111,110,58,32,102,111,114,109,45,100,97,116,97,59,32,110,97,109,101,61,34,115,99,111,112,101,34,13,10,13,10,13,10,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,53,99,50,99,100,53,49,51,102,52,51,99,56,101,99,97,98,48,51,55,54,97,51,50,45,45,13,10]}}): Error: getaddrinfo ENOTFOUND www.googleapis.com
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-11-13T23:37:43.403Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-11-13T23:37:43.413Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:176:12)
+    at refreshTokens (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:589:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getAccessToken (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:53:18)
+    at async Client.addAuthHeader (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:209:21)
+    at async Client.request (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:156:34)
+    at async getProjectPage (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:287:17)
+    at async getFirebaseProjectPage (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:304:23)
+    at async listFirebaseProjects (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:333:29)
+    at async Command.actionFn (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\projects-list.js:51:20)
+[error] 
+[error] Error: Failed to list Firebase projects. See firebase-debug.log for more info.
+[debug] [2026-11-13T23:37:43.710Z] Error: EPERM: operation not permitted, open 'C:\Users\Usuario\.config\configstore\firebase-tools.json.2011382262'
+    at Object.openSync (node:fs:561:18)
+    at Function.writeFileSync [as sync] (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\write-file-atomic\index.js:205:13)
+    at set all (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:61:20)
+    at Configstore.delete (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:101:12)
+    at process.<anonymous> (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\cli.js:95:45)
+    at process.emit (node:events:531:35)
+    at process.exit (node:internal/process/per_thread:240:15)
+    at Timeout._onTimeout (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\errorOut.js:20:17)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[error] 
+[error] Error: An unexpected error has occurred.
