@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Colección de registros del relevamiento de productores
+    match /registros_productores/{registroId} {
+      // Para el piloto: permitir lectura y escritura desde la aplicación
+      // En producción formal se restringe a usuarios autenticados con sus respectivos roles
+      allow read, write: if true;
+    }
+  }
+}
+
